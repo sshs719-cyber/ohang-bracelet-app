@@ -143,12 +143,24 @@ const vowelList = ["ㅏ", "ㅐ", "ㅑ", "ㅒ", "ㅓ", "ㅔ", "ㅕ", "ㅖ", "ㅗ"
 const form = document.querySelector("#saju-form");
 const resultSection = document.querySelector("#result-section");
 const bars = document.querySelector("#bars");
+const birthTimeInput = document.querySelector("#birth-time");
+const unknownTimeInput = document.querySelector("#unknown-time");
+
+unknownTimeInput.addEventListener("change", () => {
+  birthTimeInput.disabled = unknownTimeInput.checked;
+  birthTimeInput.required = !unknownTimeInput.checked;
+  if (unknownTimeInput.checked) {
+    birthTimeInput.value = "";
+  }
+});
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const data = new FormData(form);
-  const birthDate = new Date(`${data.get("birthDate")}T${data.get("birthTime")}`);
+  const unknownTime = data.get("unknownTime") === "on";
+  const birthTime = unknownTime ? "12:00" : data.get("birthTime");
+  const birthDate = new Date(`${data.get("birthDate")}T${birthTime}`);
   if (Number.isNaN(birthDate.getTime())) return;
 
   const name = (data.get("name") || "").trim();
@@ -167,6 +179,7 @@ form.addEventListener("submit", (event) => {
   document.querySelector("#result-title").textContent = `${data.get("name")}님의 오행 균형 결과`;
   document.querySelector("#summary-text").textContent =
     `${weak.label} 기운이 상대적으로 약하고 ${strong.label} 기운이 강하게 나타납니다. ` +
+    `${unknownTime ? "태어난 시각을 모르는 경우라 정오 기준으로 흐름을 가볍게 보정했습니다. " : ""}` +
     `부족한 기운은 아는 데서 끝내지 말고, 색상과 원석처럼 매일 몸에 닿는 루틴으로 보완할 때 훨씬 오래 의식할 수 있습니다.`;
 
   document.querySelector("#place-title").textContent = `${weak.direction} 기운을 받는 추천지`;
