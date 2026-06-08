@@ -174,13 +174,14 @@ form.addEventListener("submit", (event) => {
   const yinYang = calculateYinYang(birthDate, name, hanja);
 
   renderBars(scores);
+  renderLifeCurve(birthDate, weakKey, strongKey);
   document.querySelector("#weak-element").textContent = weak.label;
   document.querySelector("#yin-yang-badge").textContent = yinYang;
   document.querySelector("#result-title").textContent = `${data.get("name")}님의 오행 균형 결과`;
   document.querySelector("#summary-text").textContent =
     `${weak.label} 기운이 상대적으로 약하고 ${strong.label} 기운이 강하게 나타납니다. ` +
     `${unknownTime ? "태어난 시각을 모르는 경우라 정오 기준으로 흐름을 가볍게 보정했습니다. " : ""}` +
-    `부족한 기운은 아는 데서 끝내지 말고, 색상과 원석처럼 매일 몸에 닿는 루틴으로 보완할 때 훨씬 오래 의식할 수 있습니다.`;
+    `부족한 기운은 아는 데서 끝내지 말고, 팔찌와 하루 루틴처럼 매일 몸에 닿는 신호로 잡아줄 때 흔들림을 줄이는 데 도움이 됩니다.`;
 
   document.querySelector("#place-title").textContent = `${weak.direction} 기운을 받는 추천지`;
   document.querySelector("#place-copy").textContent = `${weak.place}. ${weak.copy}`;
@@ -192,8 +193,8 @@ form.addEventListener("submit", (event) => {
   braceletImage.alt = `${weak.label} 보완 오행 팔찌 제품 사진`;
   document.querySelector("#bracelet-copy").textContent =
     `${weak.label} 보완에는 ${weak.stones.join(", ")} 계열이 잘 어울립니다. ` +
-    `이 팔찌는 단순한 액세서리가 아니라 부족한 기운을 매일 확인하게 해주는 개인 부적 같은 데일리 주얼리입니다. ` +
-    `왼손은 기운을 받아들이고 싶을 때, 오른손은 자신감 있게 표현하고 싶을 때 추천합니다.`;
+    `이 팔찌는 단순한 액세서리가 아니라 나쁜 흐름이 들어올 때 한 번 멈추고 정리하게 해주는 개인 액막이 신호입니다. ` +
+    `왼손은 기운을 받아들이고 싶을 때, 오른손은 막힌 일을 밀어내고 표현하고 싶을 때 추천합니다.`;
   renderTags("#stone-chips", weak.stones);
   renderTags("#daily-routine", weak.daily);
 
@@ -274,6 +275,36 @@ function renderBars(scores) {
       `;
     })
     .join("");
+}
+
+function renderLifeCurve(date, weakKey, strongKey) {
+  const labels = ["10대", "20대", "30대", "40대", "50대", "60대+"];
+  const seed = date.getFullYear() + date.getMonth() * 7 + date.getDate() * 13;
+  const weakIndex = Object.keys(elements).indexOf(weakKey) + 1;
+  const strongIndex = Object.keys(elements).indexOf(strongKey) + 1;
+  const points = labels.map((label, index) => {
+    const wave = Math.sin((seed + index * 31) / 17) * 18;
+    const cycle = ((seed + weakIndex * 11 + index * strongIndex * 7) % 29) - 14;
+    const value = Math.max(22, Math.min(92, Math.round(58 + wave + cycle)));
+    return { label, value };
+  });
+  const low = points.reduce((min, point) => (point.value < min.value ? point : min), points[0]);
+  const high = points.reduce((max, point) => (point.value > max.value ? point : max), points[0]);
+
+  document.querySelector("#life-curve").innerHTML = points
+    .map((point) => {
+      const color = point.value < 42 ? "#b6463f" : point.value > 70 ? "#2f6f55" : "#b78329";
+      return `
+        <div class="curve-point">
+          <div class="curve-bar" style="height:${point.value}%; background:${color}"></div>
+          <div class="curve-label">${point.label}</div>
+        </div>
+      `;
+    })
+    .join("");
+  document.querySelector("#curve-copy").textContent =
+    `${low.label} 전후에는 마음이 흔들리거나 선택이 꼬이는 구간이 생기기 쉽고, ${high.label} 전후에는 기운이 다시 살아나는 흐름이 보입니다. ` +
+    `부족한 오행 팔찌와 하루 루틴은 큰일을 대신 해결해준다기보다, 안 좋은 흐름이 올 때 몸과 마음을 먼저 정돈하게 하는 액막이 습관으로 쓰면 좋습니다.`;
 }
 
 function renderTags(selector, items) {

@@ -397,6 +397,76 @@ input:disabled {
   border-radius: inherit;
 }
 
+.life-curve-box {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.life-curve-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.life-curve-head .eyebrow {
+  margin-bottom: 0;
+}
+
+.life-curve-head span {
+  border: 1px solid rgba(183, 131, 41, 0.34);
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: rgba(183, 131, 41, 0.08);
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.life-curve {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  align-items: end;
+  gap: 8px;
+  min-height: 158px;
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 12px 12px;
+  background: linear-gradient(180deg, rgba(47, 111, 85, 0.06), rgba(255, 255, 255, 0.82));
+}
+
+.curve-point {
+  display: grid;
+  grid-template-rows: minmax(24px, 1fr) auto;
+  align-items: end;
+  min-width: 0;
+}
+
+.curve-bar {
+  width: 100%;
+  min-height: 26px;
+  border-radius: 5px 5px 2px 2px;
+  background: var(--green);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.curve-label {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.curve-copy {
+  margin: 14px 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .summary-text,
 #place-copy,
 #bracelet-copy {
@@ -475,27 +545,6 @@ input:disabled {
   background: #f1c96f;
 }
 
-.proof-band {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-top: 28px;
-  background: var(--line);
-}
-
-.proof-band div {
-  display: grid;
-  gap: 8px;
-  min-height: 118px;
-  padding: 28px clamp(18px, 4vw, 46px);
-  background: #fff;
-}
-
-.proof-band strong {
-  font-size: 18px;
-}
-
-.proof-band span,
 .site-footer {
   color: var(--muted);
   line-height: 1.6;
@@ -512,8 +561,7 @@ input:disabled {
 
 @media (max-width: 920px) {
   .workspace-grid,
-  .result-grid,
-  .proof-band {
+  .result-grid {
     grid-template-columns: 1fr;
   }
 
