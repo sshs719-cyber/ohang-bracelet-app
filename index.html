@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="생년월일, 태어난 시각, 이름으로 무료 사주 오행 성향을 확인하고 부족한 기운에 맞는 오행 팔찌를 추천받으세요."
+    />
+    <title>오행운 팔찌 사주 리포트</title>
+    <link rel="preload" href="assets/product-bracelets.png" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="오행운 홈">
+        <span class="brand-mark">五</span>
+        <span>오행운</span>
+      </a>
+      <nav class="top-nav" aria-label="주요 메뉴">
+        <a href="#analysis">무료분석</a>
+        <a href="#fengshui">풍수추천</a>
+        <a href="#bracelet-offer">행운팔찌</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <img
+          class="hero-image"
+          src="assets/product-bracelets.png"
+          alt="목 화 토 금 수 오행을 상징하는 원석 팔찌 제품"
+        />
+        <div class="hero-shade"></div>
+        <div class="hero-content">
+          <p class="eyebrow">무료 사주 보고 맞춤 팔찌 추천</p>
+          <h1>내 사주에 부족한 기운, 오행 팔찌로 매일 보완하세요</h1>
+          <p class="hero-copy">
+            사주는 타고난 기운의 흐름을 보여줍니다. 부족한 목·화·토·금·수 기운을 확인하고, 나에게 맞는 색과 원석을 데일리 주얼리처럼 착용해 흐트러진 에너지를 정리해보세요.
+          </p>
+          <a class="primary-link" href="#analysis">무료 사주 보고 내 팔찌 찾기</a>
+        </div>
+      </section>
+
+      <section id="analysis" class="analysis-shell" aria-labelledby="analysis-title">
+        <div class="section-heading">
+          <p class="eyebrow">3분 입력</p>
+          <h2 id="analysis-title">나의 오행 균형 확인</h2>
+          <p>
+            이름은 한자 후보를 고르거나 직접 입력할 수 있습니다. 결과는 저장되지 않고 브라우저에서 바로 계산됩니다.
+          </p>
+        </div>
+
+        <div class="workspace-grid">
+          <form id="saju-form" class="panel input-panel">
+            <label>
+              이름
+              <input id="person-name" name="name" type="text" placeholder="예: 민지" autocomplete="name" required />
+            </label>
+
+            <details class="advanced-field">
+              <summary>한자를 알고 있다면 정확도 높이기</summary>
+              <label>
+                이름 한자 직접입력
+                <input id="custom-hanja" name="customHanja" type="text" placeholder="선택 입력: 예) 金秀賢" />
+              </label>
+            </details>
+
+            <div class="date-grid">
+              <label>
+                생년월일
+                <input id="birth-date" name="birthDate" type="date" required />
+              </label>
+              <label>
+                태어난 시각
+                <input id="birth-time" name="birthTime" type="time" required />
+              </label>
+            </div>
+
+            <div class="date-grid">
+              <label>
+                성별
+                <select id="gender" name="gender">
+                  <option value="neutral">선택 안 함</option>
+                  <option value="female">여성</option>
+                  <option value="male">남성</option>
+                </select>
+              </label>
+              <label>
+                현재 거주권역
+                <select id="region" name="region">
+                  <option value="capital">수도권</option>
+                  <option value="gangwon">강원권</option>
+                  <option value="chungcheong">충청권</option>
+                  <option value="honam">호남권</option>
+                  <option value="yeongnam">영남권</option>
+                  <option value="jeju">제주권</option>
+                </select>
+              </label>
+            </div>
+
+            <button class="submit-button" type="submit">
+              <span aria-hidden="true">✦</span>
+              무료 리포트 보기
+            </button>
+            <p class="microcopy">무료 성향 분석이며, 구매를 강요하지 않습니다.</p>
+          </form>
+
+          <aside class="panel trust-panel" aria-label="서비스 신뢰 포인트">
+            <div class="trust-metric">
+              <strong>5</strong>
+              <span>목·화·토·금·수 균형 리포트</span>
+            </div>
+            <div class="trust-list">
+              <p>음양오행 기반 부족 기운 추정</p>
+              <p>한글 이름 소리와 계절감 반영</p>
+              <p>국내 산·계곡·바다 방향 추천</p>
+              <p>부족한 기운별 오행 팔찌 추천</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="result-section" class="result-section is-hidden" aria-live="polite">
+        <div class="section-heading">
+          <p class="eyebrow">개인 리포트</p>
+          <h2 id="result-title">오행 균형 결과</h2>
+        </div>
+        <div class="result-grid">
+          <article class="panel balance-panel">
+            <div class="result-topline">
+              <div>
+                <p class="eyebrow">부족 기운</p>
+                <h3 id="weak-element">-</h3>
+              </div>
+              <span id="yin-yang-badge" class="badge">음양 균형</span>
+            </div>
+            <div id="bars" class="bars"></div>
+            <p id="summary-text" class="summary-text"></p>
+          </article>
+
+          <article id="fengshui" class="panel recommendation-panel">
+            <p class="eyebrow">풍수지리 추천</p>
+            <h3 id="place-title">추천 장소</h3>
+            <p id="place-copy"></p>
+            <div id="ritual-list" class="ritual-list"></div>
+          </article>
+
+          <article id="bracelet-offer" class="panel offer-panel">
+            <p class="eyebrow">맞춤 행운팔찌</p>
+            <h3 id="bracelet-title">오행 보완 팔찌</h3>
+            <img class="offer-image" src="assets/product-bracelets.png" alt="오행 원석 팔찌 제품 사진" />
+            <p id="bracelet-copy"></p>
+            <div id="stone-chips" class="stone-chips"></div>
+            <a id="buy-button" class="buy-button" href="#" aria-label="맞춤 행운팔찌 구매 상담하기">
+              <span aria-hidden="true">◇</span>
+              내 부족 기운 팔찌 구매하기
+            </a>
+            <p class="microcopy">지금 결과에 맞는 오행 컬러로 선택하면 고민 시간이 줄어듭니다.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="proof-band" aria-label="서비스 안내">
+        <div>
+          <strong>가볍지만 진지하게</strong>
+          <span>무료 분석은 전통 명리학을 현대적으로 해석한 웰니스 콘텐츠입니다.</span>
+        </div>
+        <div>
+          <strong>팔찌 구매까지 자연스럽게</strong>
+          <span>부족 기운 진단 뒤 바로 맞는 오행 컬러와 원석을 제안합니다.</span>
+        </div>
+        <div>
+          <strong>무료 배포 가능</strong>
+          <span>Netlify, Vercel, GitHub Pages에 그대로 올릴 수 있습니다.</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>오행운 무료 리포트는 의료·투자·법률 판단이 아닌 자기이해와 취향 선택을 위한 참고 콘텐츠입니다.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
