@@ -60,6 +60,16 @@ const elements = {
     daily: ["기상 후 물 한 컵", "푸른 팔찌 왼손 착용", "답답할 때 3분 호흡", "밤에는 감정 메모 3줄"]
   }
 };
+const purchaseLinks = [
+  {
+    label: "스마트스토어에서 구매",
+    url: "https://smartstore.naver.com/"
+  },
+  {
+    label: "상담 후 맞춤 구매",
+    url: "mailto:hello@example.com?subject=오행 팔찌 구매 문의"
+  }
+];
 
 const stems = ["wood", "wood", "fire", "fire", "earth", "earth", "metal", "metal", "water", "water"];
 const branches = ["water", "earth", "wood", "wood", "earth", "fire", "fire", "earth", "metal", "metal", "earth", "water"];
@@ -145,6 +155,20 @@ const resultSection = document.querySelector("#result-section");
 const bars = document.querySelector("#bars");
 const birthTimeInput = document.querySelector("#birth-time");
 const unknownTimeInput = document.querySelector("#unknown-time");
+const buyButton = document.querySelector("#buy-button");
+const purchaseChoices = document.querySelector("#purchase-choices");
+const purchaseLinkA = document.querySelector("#purchase-link-a");
+const purchaseLinkB = document.querySelector("#purchase-link-b");
+
+purchaseLinkA.textContent = purchaseLinks[0].label;
+purchaseLinkA.href = purchaseLinks[0].url;
+purchaseLinkB.textContent = purchaseLinks[1].label;
+purchaseLinkB.href = purchaseLinks[1].url;
+
+buyButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  purchaseChoices.hidden = !purchaseChoices.hidden;
+});
 
 unknownTimeInput.addEventListener("change", () => {
   birthTimeInput.disabled = unknownTimeInput.checked;
@@ -198,8 +222,7 @@ form.addEventListener("submit", (event) => {
   renderTags("#stone-chips", weak.stones);
   renderTags("#daily-routine", weak.daily);
 
-  const buyButton = document.querySelector("#buy-button");
-  buyButton.href = `mailto:hello@example.com?subject=${encodeURIComponent(`${data.get("name")}님 ${weak.label} 팔찌 추천 문의`)}`;
+  purchaseChoices.hidden = true;
 
   resultSection.classList.remove("is-hidden");
   resultSection.scrollIntoView({ behavior: "smooth", block: "start" });

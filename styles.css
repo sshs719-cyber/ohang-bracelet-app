@@ -545,6 +545,44 @@ input:disabled {
   background: #f1c96f;
 }
 
+.purchase-choices {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.purchase-choices[hidden] {
+  display: none;
+}
+
+.purchase-choices p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.purchase-link {
+  display: flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.purchase-link:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
 .site-footer {
   color: var(--muted);
   line-height: 1.6;
