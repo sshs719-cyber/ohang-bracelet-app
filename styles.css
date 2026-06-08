@@ -383,7 +383,8 @@ a:focus-visible {
 }
 
 .ritual-list,
-.stone-chips {
+.stone-chips,
+.daily-routine {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -391,7 +392,8 @@ a:focus-visible {
 }
 
 .ritual-list span,
-.stone-chips span {
+.stone-chips span,
+.daily-routine span {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 8px 11px;
@@ -421,6 +423,26 @@ a:focus-visible {
 .offer-panel .microcopy,
 .offer-panel #bracelet-copy {
   color: rgba(255, 255, 255, 0.72);
+}
+
+.offer-panel .stone-chips span,
+.offer-panel .daily-routine span {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.routine-box {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-top: 18px;
+}
+
+.routine-title {
+  margin: 0 0 10px;
+  color: #f1c96f;
+  font-size: 14px;
+  font-weight: 900;
 }
 
 .buy-button {

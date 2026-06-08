@@ -5,9 +5,11 @@ const elements = {
     direction: "동쪽",
     stones: ["비취", "그린 아벤추린", "말라카이트"],
     bracelet: "목(木) 기운을 채우는 초록 오행 팔찌",
+    image: "assets/bracelet-wood.png",
     place: "강원 인제 방태산 계곡 또는 전남 담양 대나무숲",
     copy: "나무 기운은 시작, 확장, 회복의 흐름입니다. 동쪽 숲길과 맑은 계곡처럼 생기가 살아나는 장소가 잘 맞습니다.",
-    rituals: ["아침 산책", "동쪽 창가 정리", "초록색 소품", "물소리 듣기"]
+    rituals: ["아침 산책", "동쪽 창가 정리", "초록색 소품", "물소리 듣기"],
+    daily: ["출근 전 10분 스트레칭", "초록 팔찌 왼손 착용", "오늘 시작할 일 1개 적기", "점심 후 나무 많은 길 걷기"]
   },
   fire: {
     label: "화(火)",
@@ -15,9 +17,11 @@ const elements = {
     direction: "남쪽",
     stones: ["가넷", "카넬리안", "레드 재스퍼"],
     bracelet: "화(火) 기운을 깨우는 붉은 오행 팔찌",
+    image: "assets/bracelet-fire.png",
     place: "부산 해운대 달맞이길 또는 경남 남해 금산",
     copy: "불 기운은 열정, 표현, 주목의 흐름입니다. 남쪽의 햇빛, 바다 전망, 탁 트인 능선이 기운을 끌어올립니다.",
-    rituals: ["오전 햇빛 받기", "남향 자리 활용", "따뜻한 차", "붉은 포인트"]
+    rituals: ["오전 햇빛 받기", "남향 자리 활용", "따뜻한 차", "붉은 포인트"],
+    daily: ["오전 햇빛 15분 받기", "붉은 팔찌 오른손 착용", "먼저 연락 1번 하기", "미룬 결정 하나 끝내기"]
   },
   earth: {
     label: "토(土)",
@@ -25,9 +29,11 @@ const elements = {
     direction: "중앙과 남서쪽",
     stones: ["호안석", "시트린", "옐로우 재스퍼"],
     bracelet: "토(土) 기운을 붙잡는 황금빛 오행 팔찌",
+    image: "assets/bracelet-earth.png",
     place: "충남 계룡산 갑사길 또는 전북 고창 선운산",
     copy: "흙 기운은 안정, 신뢰, 축적의 흐름입니다. 완만한 산길과 오래된 사찰 주변처럼 중심이 단단한 곳이 좋습니다.",
-    rituals: ["집 중앙 비우기", "흙길 걷기", "노란빛 조명", "식사 리듬 고정"]
+    rituals: ["집 중앙 비우기", "흙길 걷기", "노란빛 조명", "식사 리듬 고정"],
+    daily: ["아침 식사 거르지 않기", "노란 팔찌 왼손 착용", "책상 중앙 비우기", "오늘 돈 쓸 곳 미리 정하기"]
   },
   metal: {
     label: "금(金)",
@@ -35,9 +41,11 @@ const elements = {
     direction: "서쪽",
     stones: ["백수정", "문스톤", "헤마타이트"],
     bracelet: "금(金) 기운을 정리하는 맑은 오행 팔찌",
+    image: "assets/bracelet-metal.png",
     place: "인천 강화도 석모도 또는 충남 태안 해변",
     copy: "금 기운은 정리, 결단, 품격의 흐름입니다. 서쪽 바다와 석양, 바람이 잘 통하는 공간이 생각을 맑게 합니다.",
-    rituals: ["책상 정리", "서쪽 산책", "흰색 셔츠", "금속 액세서리"]
+    rituals: ["책상 정리", "서쪽 산책", "흰색 셔츠", "금속 액세서리"],
+    daily: ["하루 첫 5분 책상 정리", "흰 팔찌 오른손 착용", "불필요한 약속 하나 줄이기", "오후에 할 일 3개만 남기기"]
   },
   water: {
     label: "수(水)",
@@ -45,9 +53,11 @@ const elements = {
     direction: "북쪽",
     stones: ["라피스라줄리", "아쿠아마린", "흑요석"],
     bracelet: "수(水) 기운을 흐르게 하는 푸른 오행 팔찌",
+    image: "assets/bracelet-water.png",
     place: "경기 가평 용추계곡 또는 제주 돈내코 계곡",
     copy: "물 기운은 지혜, 유연함, 깊이의 흐름입니다. 북쪽 물길, 계곡, 차분한 호수 주변이 마음의 속도를 낮춰줍니다.",
-    rituals: ["물가 명상", "북쪽 공간 정돈", "짙은 파랑", "수분 루틴"]
+    rituals: ["물가 명상", "북쪽 공간 정돈", "짙은 파랑", "수분 루틴"],
+    daily: ["기상 후 물 한 컵", "푸른 팔찌 왼손 착용", "답답할 때 3분 호흡", "밤에는 감정 메모 3줄"]
   }
 };
 
@@ -164,11 +174,15 @@ form.addEventListener("submit", (event) => {
   renderTags("#ritual-list", weak.rituals);
 
   document.querySelector("#bracelet-title").textContent = weak.bracelet;
+  const braceletImage = document.querySelector("#bracelet-image");
+  braceletImage.src = weak.image;
+  braceletImage.alt = `${weak.label} 보완 오행 팔찌 제품 사진`;
   document.querySelector("#bracelet-copy").textContent =
     `${weak.label} 보완에는 ${weak.stones.join(", ")} 계열이 잘 어울립니다. ` +
     `이 팔찌는 단순한 액세서리가 아니라 부족한 기운을 매일 확인하게 해주는 개인 부적 같은 데일리 주얼리입니다. ` +
     `왼손은 기운을 받아들이고 싶을 때, 오른손은 자신감 있게 표현하고 싶을 때 추천합니다.`;
   renderTags("#stone-chips", weak.stones);
+  renderTags("#daily-routine", weak.daily);
 
   const buyButton = document.querySelector("#buy-button");
   buyButton.href = `mailto:hello@example.com?subject=${encodeURIComponent(`${data.get("name")}님 ${weak.label} 팔찌 추천 문의`)}`;
