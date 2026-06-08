@@ -62,12 +62,12 @@ const elements = {
 };
 const purchaseLinks = [
   {
-    label: "스마트스토어에서 구매",
-    url: "https://smartstore.naver.com/"
+    label: "쿠팡에서 구매",
+    url: "https://www.coupang.com/vp/products/9591807571"
   },
   {
-    label: "상담 후 맞춤 구매",
-    url: "mailto:hello@example.com?subject=오행 팔찌 구매 문의"
+    label: "스마트스토어에서 구매",
+    url: "https://smartstore.naver.com/snap_wave/products/13626382934?is_retargeting=true&c=260101_p_Naver_product&pid=Naver&deep_link_value=https%3A%2F%2Fsmartstore.naver.com%2Fsnap_wave%2Fproducts%2F13626382934%3Fka_ref%3Dkakao%26ka_req_id%3DgNVJ73M1P6BZzbXeMyjcAQ%26ka_template%3Dcommerce_info&dtm_source=KK&dtm_detail=gNVJ73M1P6BZzbXeMyjcAQ&dtm_campaign=commerce_info&dtm_medium=OG"
   }
 ];
 
